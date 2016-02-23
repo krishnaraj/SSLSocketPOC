@@ -1,0 +1,37 @@
+import org.apache.tools.ant.filters.ReplaceTokens
+
+buildscript {
+    repositories { jcenter() }
+}
+
+apply plugin: 'java'
+apply plugin: 'application'
+
+repositories {
+    mavenCentral()
+}
+
+sourceCompatibility = 1.7
+
+dependencies {
+    compile 'org.bouncycastle:bcprov-jdk15on:1.46'
+}
+
+mainClassName = "com.sslsocketpoc.server.Main"
+
+applicationDefaultJvmArgs = ["-Djavax.net.debug=SSL"]
+
+processResources {
+    filesMatching('**/config.properties') {
+        filter ReplaceTokens, tokens: [
+                "serverPrivateKeyStorePass": project.serverPrivateKeyStorePass,
+                "clientPublicKeyStorePass": project.clientPublicKeyStorePass
+        ]
+    }
+    doLast {
+        copy{
+            from([project.serverPrivateKeyStorePath, project.clientPublicKeyStorePath])
+            into "${destinationDir}"
+        }
+    }
+}
