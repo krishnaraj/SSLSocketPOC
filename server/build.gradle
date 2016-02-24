@@ -17,21 +17,6 @@ dependencies {
     compile 'org.bouncycastle:bcprov-jdk15on:1.46'
 }
 
-mainClassName = "com.sslsocketpoc.server.Main"
+mainClassName = "com.sslsocketpoc.server.Server"
 
 applicationDefaultJvmArgs = ["-Djavax.net.debug=SSL"]
-
-processResources {
-    filesMatching('**/config.properties') {
-        filter ReplaceTokens, tokens: [
-                "serverPrivateKeyStorePass": project.serverPrivateKeyStorePass,
-                "clientPublicKeyStorePass": project.clientPublicKeyStorePass
-        ]
-    }
-    doLast {
-        copy{
-            from([project.serverPrivateKeyStorePath, project.clientPublicKeyStorePath])
-            into "${destinationDir}"
-        }
-    }
-}
