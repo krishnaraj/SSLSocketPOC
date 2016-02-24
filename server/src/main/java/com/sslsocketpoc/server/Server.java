@@ -5,6 +5,8 @@ import org.bouncycastle.jce.provider.BouncyCastleProvider;
 import javax.net.ssl.*;
 import java.io.IOException;
 import java.io.InputStream;
+import java.io.ObjectInputStream;
+import java.net.Socket;
 import java.security.GeneralSecurityException;
 import java.security.KeyStore;
 import java.security.SecureRandom;
@@ -57,6 +59,14 @@ public class Server {
             serverSocket = (SSLServerSocket) sf.createServerSocket( PORT );
             serverSocket.setNeedClientAuth(true);
 
+            Socket socket = serverSocket.accept();
+
+            ObjectInputStream objInputStream = new ObjectInputStream(socket.getInputStream());
+            while (objInputStream.readObject() != null) {
+                // do nothing
+            }
+
+            objInputStream.close();
 
         } catch (Exception e) {
             e.printStackTrace();
