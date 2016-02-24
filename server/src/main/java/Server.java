@@ -31,8 +31,8 @@ public class Server {
         SecureRandom secureRandom = new SecureRandom();
         secureRandom.nextInt();
 
-        privateKeyStoreIns = Server.class.getResourceAsStream("server.private");
-        publicKeyStoreIns = Server.class.getResourceAsStream("client.public");
+        privateKeyStoreIns = Server.class.getResourceAsStream("/server.private");
+        publicKeyStoreIns = Server.class.getResourceAsStream("/client.public");
 
         Security.addProvider(new BouncyCastleProvider());
 
