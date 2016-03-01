@@ -1,6 +1,6 @@
 #!/bin/bash
 
-BKS_PROVIDER="-providerclass org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath lib/bcprov-jdk15on-146.jar -storetype BKS"
+BKS_PROVIDER="-providerclass org.bouncycastle.jce.provider.BouncyCastleProvider -providerpath lib/bcprov-jdk15on-146.jar -storetype BKS -keyalg EC"
 
 # Generate client public/private key pair into private keystore
 echo Generating client public private key pair

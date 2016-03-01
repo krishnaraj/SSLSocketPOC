@@ -15,7 +15,7 @@ import java.security.SecureRandom;
 public class MainActivity extends Activity {
     private static final String TAG = MainActivity.class.getName();
     public static final int PORT = 4646;
-    public static final String HOST = "192.168.1.12"; //Change to IP address of server
+    public static final String HOST = "192.168.1.9"; //Change to IP address of server
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
